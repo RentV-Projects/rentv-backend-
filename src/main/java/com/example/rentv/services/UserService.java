@@ -37,7 +37,6 @@ public class UserService {
         profile.setAdditionalInfo(registrationRequest.getAdditionalInfo());
         newUser.setProfile(profile);
         userRepository.save(newUser);
-
         return ResponseEntity.ok("User registered successfully");
     }
 
