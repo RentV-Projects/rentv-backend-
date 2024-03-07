@@ -22,10 +22,15 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestParam User user, @RequestParam String username, @RequestParam String password) {
-        userService.login(user, username, password);
-        return ResponseEntity.ok("User logged in successfully");
+    public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
+        boolean loginSuccessful = userService.login(username, password);
+        if (loginSuccessful) {
+            return ResponseEntity.ok("User logged in successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+        }
     }
+
 
     @GetMapping("/logout")
     public ResponseEntity<String> logout(@RequestParam User user) {

@@ -11,14 +11,17 @@ public class Security {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String loginCredentials;
+    private String email;
+    private String password;
     @ElementCollection
     private List<String> roles;
     @ElementCollection
     private List<String> permissions;
 
-    public Security(String loginCredentials, List<String> roles, List<String> permissions) {
-        this.loginCredentials = loginCredentials;
+    public Security(Long id, String email, String password, List<String> roles, List<String> permissions) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
         this.roles = roles;
         this.permissions = permissions;
     }

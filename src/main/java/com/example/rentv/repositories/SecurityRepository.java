@@ -6,5 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SecurityRepository extends JpaRepository<Security, Long> {
+    Security findByEmail(String email);
+
 }
 
