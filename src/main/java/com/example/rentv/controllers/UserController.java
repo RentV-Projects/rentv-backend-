@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -22,19 +24,22 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
-        boolean loginSuccessful = userService.login(username, password);
+    public ResponseEntity<String> login(@RequestBody Map<String, String> credentials) {
+        String email = credentials.get("email");
+        String password = credentials.get("password");
+
+        boolean loginSuccessful = userService.login(email, password);
         if (loginSuccessful) {
             return ResponseEntity.ok("User logged in successfully");
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
         }
     }
 
 
+
     @GetMapping("/logout")
-    public ResponseEntity<String> logout(@RequestParam User user) {
-        userService.logout(user);
+    public ResponseEntity<String> logout() {
         return ResponseEntity.ok("User logged out successfully");
     }
 

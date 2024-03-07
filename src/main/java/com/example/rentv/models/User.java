@@ -15,6 +15,7 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     private Security security;
     @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private Profile profile;
 
     public User(Security security, Profile profile) {
