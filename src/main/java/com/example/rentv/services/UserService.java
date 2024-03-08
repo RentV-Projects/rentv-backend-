@@ -1,7 +1,6 @@
 package com.example.rentv.services;
 
 import com.example.rentv.dtos.UserRegistrationRequest;
-import com.example.rentv.models.ConcreteUser;
 import com.example.rentv.models.Profile;
 import com.example.rentv.models.Security;
 import com.example.rentv.models.User;
@@ -9,7 +8,6 @@ import com.example.rentv.repositories.SecurityRepository;
 import com.example.rentv.repositories.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service

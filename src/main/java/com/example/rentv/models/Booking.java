@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.sql.DataSource;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 @Entity
 @Data
@@ -17,11 +20,12 @@ public class Booking {
     private Customer customer;
     @ManyToOne
     private Car car;
-    private Date pickupDate;
-    private Date dropOffDate;
-    private double price;
+    private LocalDate pickupDate;
+    private LocalDate dropOffDate;
+    private BigDecimal price;
 
-    public Booking(Long id, Customer customer, Car car, Date pickupDate, Date dropOffDate, double price) {
+
+    public Booking(Long id, Customer customer, Car car, LocalDate pickupDate, LocalDate dropOffDate, BigDecimal price) {
         this.id = id;
         this.customer = customer;
         this.car = car;
