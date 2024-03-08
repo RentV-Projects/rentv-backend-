@@ -36,7 +36,6 @@ public class UserService {
         Profile profile = new Profile();
         profile.setName(registrationRequest.getName());
         profile.setAddress(registrationRequest.getAddress());
-        profile.setAdditionalInfo(registrationRequest.getAdditionalInfo());
 
         security.setEmail(registrationRequest.getEmail());
         security.setPassword(registrationRequest.getPassword());
