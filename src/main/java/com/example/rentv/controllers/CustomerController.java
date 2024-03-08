@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
