@@ -1,5 +1,6 @@
 package com.example.rentv.controllers;
 
+import com.example.rentv.dtos.BookingRequest;
 import com.example.rentv.models.Car;
 import com.example.rentv.models.Customer;
 import com.example.rentv.services.CustomerService;
@@ -7,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/customers")
@@ -16,31 +20,27 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    @PostMapping("/searchForCars")
-    public ResponseEntity<?> searchForCars(@RequestParam String criteria) {
-        return ResponseEntity.ok(customerService.searchForCars(criteria));
+    @GetMapping("/searchForAllCars")
+    public ResponseEntity<List<Car>> searchForCars(@RequestParam boolean availability) {
+        List<Car> cars = customerService.searchForAllCars(availability);
+        return ResponseEntity.ok(cars);
     }
 
-    @GetMapping("/viewCarDetails/{carId}")
-    public ResponseEntity<?> viewCarDetails(@PathVariable Long carId) {
-        return ResponseEntity.ok(customerService.viewCarDetails(carId));
-    }
-
-    @GetMapping("/viewCarImages/{carId}")
-    public ResponseEntity<?> viewCarImages(@PathVariable Long carId) {
-        return ResponseEntity.ok(customerService.viewCarImages(carId));
+    @GetMapping("/searchForACar/{carId}")
+    public ResponseEntity<Car> viewCarDetails(@PathVariable Long carId) {
+        Car car = customerService.searchForACar(carId);
+        if (car != null) {
+            return ResponseEntity.ok(car);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping("/bookCar")
-    public ResponseEntity<String> bookCar(@RequestParam Customer customerId, @RequestParam Car carId, @RequestParam Date pickupDate, @RequestParam Date dropOffDate, @RequestParam double price) {
-        customerService.bookCar(customerId, carId, pickupDate, dropOffDate, price);
-        return ResponseEntity.ok("Car booked successfully");
-    }
+    public ResponseEntity<String> bookCar(@RequestBody BookingRequest bookingRequest) {
+        customerService.bookCar(bookingRequest);
 
-    @PostMapping("/manageBooking/{bookingId}")
-    public ResponseEntity<String> manageBooking(@PathVariable Customer customer, @RequestParam String bookingId, @RequestParam String action) {
-        customerService.manageBooking(customer, bookingId, action);
-        return ResponseEntity.ok("Booking managed successfully");
+        return ResponseEntity.ok("Car booked successfully");
     }
 
 }

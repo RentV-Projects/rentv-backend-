@@ -31,7 +31,7 @@ public class UserService {
 
     public void register(UserRegistrationRequest registrationRequest) {
         if (userRepository.existsBySecurityEmail(registrationRequest.getEmail())) {
-            throw new IllegalArgumentException("Email address already exists");
+            throw new IllegalArgumentException("Email address already exists. Please use a different email address.");
         }
 
         User newUser = new User();

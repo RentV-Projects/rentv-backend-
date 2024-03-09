@@ -34,6 +34,14 @@ public class Booking {
         this.price = price;
     }
 
+    public Booking(Customer customer, Car car, LocalDate pickupDate, LocalDate dropOffDate, BigDecimal price) {
+        this.customer = customer;
+        this.car = car;
+        this.pickupDate = pickupDate;
+        this.dropOffDate = dropOffDate;
+        this.price = price;
+    }
+
     public void cancelBooking() {
     }
 
