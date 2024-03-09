@@ -37,7 +37,6 @@ public class CustomerController {
     }
 
     @PostMapping("/bookCar")
-
     public ResponseEntity<String> bookCar(@RequestBody BookingRequest bookingRequest) {
         customerService.bookCar(bookingRequest);
 
