@@ -12,12 +12,15 @@ public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String firstName;
+    private String lastName;
     private String address;
     private String additionalInfo;
 
-    public Profile(String name, String address, String additionalInfo) {
-        this.name = name;
+
+    public Profile(String firstName, String lastName, String address, String additionalInfo) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.address = address;
         this.additionalInfo = additionalInfo;
     }
@@ -26,8 +29,11 @@ public class Profile {
 
     }
 
-    public void updateName(String name) {
-        this.name = name;
+    public void updateFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    public void updateLastName(String firstName) {
+        this.firstName = firstName;
     }
 
     public void updateAddress(String address) {

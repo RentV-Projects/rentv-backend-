@@ -16,7 +16,7 @@ public class Customer extends User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "user")
     private List<Booking> bookings;
 
     @OneToMany(mappedBy = "customer")
@@ -56,5 +56,8 @@ public class Customer extends User {
 
     public boolean manageBooking(String bookingId, String action) {
         return false;
+    }
+    public User getUser() {
+        return this;
     }
 }

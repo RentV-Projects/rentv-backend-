@@ -38,7 +38,8 @@ public class UserService {
         Security security = new Security();
         Profile profile = new Profile();
 
-        profile.setName(registrationRequest.getName());
+        profile.setFirstName(registrationRequest.getFirstName());
+        profile.setLastName(registrationRequest.getLastName());
         profile.setAddress(registrationRequest.getAddress());
 
         security.setEmail(registrationRequest.getEmail());

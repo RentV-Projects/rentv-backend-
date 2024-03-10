@@ -17,7 +17,7 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    private Customer customer;
+    private User user;
     @ManyToOne
     private Car car;
     private LocalDate pickupDate;
@@ -25,17 +25,17 @@ public class Booking {
     private BigDecimal price;
 
 
-    public Booking(Long id, Customer customer, Car car, LocalDate pickupDate, LocalDate dropOffDate, BigDecimal price) {
+    public Booking(Long id, User user, Car car, LocalDate pickupDate, LocalDate dropOffDate, BigDecimal price) {
         this.id = id;
-        this.customer = customer;
+        this.user = user;
         this.car = car;
         this.pickupDate = pickupDate;
         this.dropOffDate = dropOffDate;
         this.price = price;
     }
 
-    public Booking(Customer customer, Car car, LocalDate pickupDate, LocalDate dropOffDate, BigDecimal price) {
-        this.customer = customer;
+    public Booking(User user, Car car, LocalDate pickupDate, LocalDate dropOffDate, BigDecimal price) {
+        this.user = user;
         this.car = car;
         this.pickupDate = pickupDate;
         this.dropOffDate = dropOffDate;

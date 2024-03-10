@@ -1,12 +1,10 @@
 package com.example.rentv.services;
 
 import com.example.rentv.dtos.BookingRequest;
-import com.example.rentv.models.Booking;
-import com.example.rentv.models.Car;
-import com.example.rentv.models.Customer;
-import com.example.rentv.models.Review;
+import com.example.rentv.models.*;
 import com.example.rentv.repositories.BookingRepository;
 import com.example.rentv.repositories.CarRepository;
+import com.example.rentv.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +22,9 @@ public class CustomerService {
     @Autowired
     private BookingRepository bookingRepository;
 
+    @Autowired
+    private CustomerRepository customerRepository;
+
     public List<Car> searchForAllCars(boolean availability) {
         return carRepository.findByAvailability(availability);
     }
@@ -34,8 +35,13 @@ public class CustomerService {
         LocalDate pickupDate = bookingRequest.getPickupDate();
         LocalDate dropOffDate = bookingRequest.getDropOffDate();
         BigDecimal price = bookingRequest.getPrice();
+        User user = customer.getUser();
 
-        Booking booking = new Booking(customer, car, pickupDate, dropOffDate, price);
+        if (user.getId() == null) {
+            customerRepository.save(customer);
+        }
+
+        Booking booking = new Booking(user, car, pickupDate, dropOffDate, price);
 
         bookingRepository.save(booking);
     }
