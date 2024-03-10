@@ -18,6 +18,7 @@ public class Car {
     private int year;
     private String type;
     @ElementCollection
+
     private List<String> features;
     private boolean availability;
     @ElementCollection
