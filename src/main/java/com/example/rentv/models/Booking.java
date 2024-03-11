@@ -20,6 +20,9 @@ public class Booking {
     private User user;
     @ManyToOne
     private Car car;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
     private LocalDate pickupDate;
     private LocalDate dropOffDate;
     private BigDecimal price;
@@ -37,6 +40,15 @@ public class Booking {
     public Booking(User user, Car car, LocalDate pickupDate, LocalDate dropOffDate, BigDecimal price) {
         this.user = user;
         this.car = car;
+        this.pickupDate = pickupDate;
+        this.dropOffDate = dropOffDate;
+        this.price = price;
+    }
+
+    public Booking(Customer customer, Car car, LocalDate pickupDate, LocalDate dropOffDate, BigDecimal price) {
+//        this.user = user;
+        this.car = car;
+        this.customer = customer;
         this.pickupDate = pickupDate;
         this.dropOffDate = dropOffDate;
         this.price = price;

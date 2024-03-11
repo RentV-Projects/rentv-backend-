@@ -19,32 +19,12 @@ public class CustomerService {
     @Autowired
     private CarRepository carRepository;
 
-    @Autowired
-    private BookingRepository bookingRepository;
-
-    @Autowired
-    private CustomerRepository customerRepository;
 
     public List<Car> searchForAllCars(boolean availability) {
         return carRepository.findByAvailability(availability);
     }
 
-    public void bookCar(BookingRequest bookingRequest) {
-        Customer customer = bookingRequest.getCustomer();
-        Car car = bookingRequest.getCar();
-        LocalDate pickupDate = bookingRequest.getPickupDate();
-        LocalDate dropOffDate = bookingRequest.getDropOffDate();
-        BigDecimal price = bookingRequest.getPrice();
-        User user = customer.getUser();
 
-        if (user.getId() == null) {
-            customerRepository.save(customer);
-        }
-
-        Booking booking = new Booking(user, car, pickupDate, dropOffDate, price);
-
-        bookingRepository.save(booking);
-    }
 
     public Car searchForACar(Long carId) {
         return carRepository.findById(carId).orElse(null);

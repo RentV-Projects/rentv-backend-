@@ -36,12 +36,7 @@ public class CustomerController {
         }
     }
 
-    @PostMapping("/bookCar")
-    public ResponseEntity<String> bookCar(@RequestBody BookingRequest bookingRequest) {
-        customerService.bookCar(bookingRequest);
 
-        return ResponseEntity.ok("Car booked successfully");
-    }
 
 }
 

@@ -1,13 +1,16 @@
 package com.example.rentv.services;
 
 import com.example.rentv.dtos.UserRegistrationRequest;
+import com.example.rentv.models.Customer;
 import com.example.rentv.models.Profile;
 import com.example.rentv.models.Security;
 import com.example.rentv.models.User;
+import com.example.rentv.repositories.CustomerRepository;
 import com.example.rentv.repositories.SecurityRepository;
 import com.example.rentv.repositories.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +19,10 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final SecurityRepository securityRepository;
+
+    @Autowired
+    private CustomerRepository customerRepository;
+
     private final HttpServletRequest request;
     private final HttpServletResponse response;
 
@@ -53,6 +60,10 @@ public class UserService {
         } catch (DataIntegrityViolationException ex) {
             throw new IllegalStateException("Failed to register user", ex);
         }
+        Customer customer = new Customer();
+        customer.setUser(newUser);
+
+        customerRepository.save(customer);
     }
 
     public boolean login(String email, String password) {

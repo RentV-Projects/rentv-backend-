@@ -8,8 +8,11 @@ import org.springframework.stereotype.Service;
 public class ProfileService {
 
 
-    public void updateProfileName(Profile profile, String newName) {
-        profile.updateName(newName);
+    public void updateProfileFirstName(Profile profile, String newFirstName) {
+        profile.updateFirstName(newFirstName);
+    }
+    public void updateProfileLastName(Profile profile, String newLastName) {
+        profile.updateLastName(newLastName);
     }
 
     public void updateProfileAddress(Profile profile, String newAddress) {
