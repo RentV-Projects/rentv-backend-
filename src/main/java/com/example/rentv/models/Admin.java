@@ -15,5 +15,8 @@ public class Admin extends User {
 
     public void moderateAdvertisement() {
     }
+    public void manageBooking(){
+
+    }
 }
 

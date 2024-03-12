@@ -30,5 +30,9 @@ public class AdminService {
 
     public void confirmBooking(Booking booking) {
     }
+
+    public void approveUpload(){
+
+    }
 }
 

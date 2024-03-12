@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Car Form</title>
+</head>
+<body>
+<h2>Upload Car Form</h2>
+<form action="http://localhost:9090/cars/upload" method="post" enctype="multipart/form-data">
+    <label for="make">Make:</label>
+    <input type="text" id="make" name="make"><br><br>
+
+    <label for="model">Model:</label>
+    <input type="text" id="model" name="model"><br><br>
+
+    <label for="year">Year:</label>
+    <input type="text" id="year" name="year"><br><br>
+
+    <label for="type">Type:</label>
+    <input type="text" id="type" name="type"><br><br>
+
+    <label for="features">Features:</label>
+    <textarea id="features" name="features"></textarea><br><br>
+
+    <label for="availability">Availability:</label>
+    <input type="checkbox" id="availability" name="availability"><br><br>
+
+    <label for="images">Images:</label>
+    <input type="file" id="images" name="images" multiple><br><br>
+
+    <button type="submit">Upload Car</button>
+</form>
+</body>
+</html>

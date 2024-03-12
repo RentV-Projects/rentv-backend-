@@ -4,11 +4,12 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
 @Entity
 @Data
-@NoArgsConstructor
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +23,11 @@ public class Car {
     private boolean availability;
     @ElementCollection
     private List<String> images;
+
+    public Car() {
+        this.features = new ArrayList<>();
+        this.images = new ArrayList<>();
+    }
 
     public Car(Long id, String make, String model, int year, String type, List<String> features, boolean availability, List<String> images) {
         this.id = id;
