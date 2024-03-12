@@ -27,6 +27,7 @@ public class BookingService {
     public void bookCar(BookingRequest bookingRequest) {
         Customer customer = bookingRequest.getCustomer();
         Car car = bookingRequest.getCar();
+
         LocalDate pickupDate = bookingRequest.getPickupDate();
         LocalDate dropOffDate = bookingRequest.getDropOffDate();
         BigDecimal price = bookingRequest.getPrice();
